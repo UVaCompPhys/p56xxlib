@@ -14,6 +14,7 @@ dep = $(OBJ:.o=.d)  # one dependency file for each source
 all: $(EXES)
 
 $(EXES): $(SRCS)
+	mkdir -p ../bin
 	$(GXX) $(CXXFLAGS) -MMD -c $@.cpp
 	$(GXX) $@.cpp -o../bin/$@ $(LDFLAGS)
 
