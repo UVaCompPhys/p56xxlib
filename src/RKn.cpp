@@ -17,7 +17,7 @@ using std::max;
 using std::min;
 
 /// 
-/// @fn RK4Solve(double (*f)(double x, double y), double y0,
+/// @fn TGraph RK4Solve(double (*f)(double x, double y), double y0,
 ///		int nsteps, double x0, double xmax);
 /// @brief RK4 solver for a single ODE.
 ///
@@ -31,7 +31,7 @@ using std::min;
 /// \param[in] xmax end of range for dependent variable in calculation
 /// x0, xmax, nsteps  are used to set the step size
 ///
-/// Returns a TGraph of y vs x
+/// Returns a TGraph of y vs x.  y0 is not updated.
 /// 
 TGraph RK4Solve(double (*f)(double x, double y), double y0,
 		int nsteps, double x0, double xmax){
@@ -61,7 +61,7 @@ TGraph RK4Solve(double (*f)(double x, double y), double y0,
 /// @brief Perform one step using the RK4 algorithm
 ///
 /// Call this function directly instead of using the higher level interfaces
-/// for full control over the date in your intermediate steps.
+/// for full control over the data in your intermediate steps.
 /// @param[in] fnlist vector of function pointers to the ODEs describing the system
 /// @param[in] y vector of initial conditions (this is updated by the step taken)
 /// @param[in] x value of dependent vaaiable
@@ -153,13 +153,13 @@ vector<TGraph> RK4SolveN(vector<pfunc_t> &fnlist, vector<double> &y0,
 
 
 ///
-/// \fn void RK4SolveN2(vector<pfunc_t> &fnlist, vector<double> &y,
+/// \fn void RK4SolveNx(vector<pfunc_t> &fnlist, vector<double> &y,
 ///			 int nsteps, double x0, double xmax, pfunc_t fstop)
 /// \brief RK4 solver for a system of ODEs.
 ///
 /// Solves a series of coupled ODEs using the RK4 method using a fixed number of steps in range [x0,xmax]
 /// \param[in] fnlist vector of function pointers to the ODEs describing the system
-/// \param[in] y vector of initial conditions (updated in this function) 
+/// \param[in] y vector of initial conditions (updated in this function to the final location) 
 /// \param[in] nsteps maximum number of steps in simulation
 /// \param[in] x0 starting value of dependent vaaiable
 /// \param[in] xmax maximum value of dependent variable
@@ -167,7 +167,7 @@ vector<TGraph> RK4SolveN(vector<pfunc_t> &fnlist, vector<double> &y0,
 ///        condition based on the results of the approximation
 ///
 ///
-void RK4SolveN2(vector<pfunc_t> &fnlist, vector<double> &y,
+void RK4SolveNx(vector<pfunc_t> &fnlist, vector<double> &y,
 			 int nsteps, double x0, double xmax, pfunc_t fstop){
 
   assert(fnlist.size() == y.size());   // need one initial condition per function

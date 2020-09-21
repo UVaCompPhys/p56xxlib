@@ -51,7 +51,7 @@ vector<double> RK4StepN(vector<pfunc_t> &fnlist, vector<double> y,
 vector<TGraph> RK4SolveN(vector<pfunc_t> &fnlist, vector<double> &y0,
 			 int nsteps, double x0, double xmax, pfunc_t fstop=0);
 
-void RK4SolveN2(vector<pfunc_t> &fnlist, vector<double> &y,
+void RK4SolveNx(vector<pfunc_t> &fnlist, vector<double> &y,
 			 int nsteps, double x0, double xmax, pfunc_t fstop=0);
 
 vector<TGraph> RK4SolveN(vector<pfunc_t> &fnlist, vector<double> &y0,
