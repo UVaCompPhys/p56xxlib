@@ -15,7 +15,7 @@ all: $(obj) lib
 
 # build static and shared libraries
 lib:
-	ar rcs ../lib/libP5640.a $(obj)
+	ar crs ../lib/libP5640.a $(obj)
 	g++ $(obj) -shared -o ../lib/libP5640.so
 
 clean:
