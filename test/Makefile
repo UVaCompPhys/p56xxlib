@@ -3,7 +3,7 @@ ROOTLIBS   = $(shell root-config --libs)
 ROOTGLIBS  = $(shell root-config --glibs)
 ROOTFLAGS   = $(ROOTCFLAGS) $(ROOTLIBS) $(ROOTGLIBS) 
 CXXFLAGS  += $(ROOTCFLAGS) -I$(P56xxLIBS)/inc -Wall -O3
-LDFLAGS    = $(ROOTLIBS) $(ROOTGLIBS) -L$(P56xxLIBS)/lib -lP5640
+LDFLAGS    = $(ROOTLIBS) $(ROOTGLIBS) -L$(P56xxLIBS)/lib -lP56xx
 GXX	   = g++ $(CXXFLAGS)
 
 SRCS = $(wildcard *.cpp)

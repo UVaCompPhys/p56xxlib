@@ -16,8 +16,8 @@ all: $(obj) lib
 # build static and shared libraries
 lib:
 	mkdir -p ../lib
-	ar crs ../lib/libP5640.a $(obj)
-	g++ $(obj) -shared -o ../lib/libP5640.so
+	ar crs ../lib/libP56xx.a $(obj)
+	g++ $(obj) -shared -o ../lib/libP56xx.so
 
 clean:
 	rm -f *.o *.so ../lib/* *.d *~

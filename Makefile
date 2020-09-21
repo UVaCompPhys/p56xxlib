@@ -12,9 +12,6 @@ subdirs: $(SUBDIRS)
 $(SUBDIRS): 
 	make -C $@
 
-lib: runge-kutta
-examples: lib
-
 .PHONY: clean
 
 clean:
