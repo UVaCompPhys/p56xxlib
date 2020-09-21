@@ -19,7 +19,7 @@ $(EXES): $(SRCS)
 	$(GXX) $@.cpp -o../bin/$@ $(LDFLAGS)
 
 clean:
-	rm -f *.o *.so *.d *~ $(addprefix build/,$(EXES))
+	rm -f *.o *.so *.d *~ $(addprefix ../bin/,$(EXES))
 
 cleanall: clean
 	rm -f $(dep)
