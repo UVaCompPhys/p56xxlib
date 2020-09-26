@@ -2,7 +2,6 @@
 /// @file RKn.cpp 
 /// @brief Runge-Kutta solvers. 
 /// @author Bob Hirosky
-/// @date 31 Dec 2019 
 ///
 /// Generic solvers for linear first order ODEs using RK4.
 ///
@@ -144,7 +143,7 @@ vector<TGraph> RK4SolveN(vector<pfunc_t> &fnlist, vector<double> &y0,
     y=ytmp;
     x+=h;
     for (int i=0; i<nFcn; i++) tg[i].SetPoint(n+1,x,y[i]);
-    if (fstop && fstop(x+h,ytmp)) break;
+    if (fstop && fstop(x,ytmp)) break;
   }
   
   return tg;
@@ -181,7 +180,7 @@ void RK4SolveNx(vector<pfunc_t> &fnlist, vector<double> &y,
     y=ytmp;
     x+=h;
     //printf("%lg %lg %lg\n",x,y[0],y[1]);
-    if (fstop && fstop(x+h,ytmp)) break;
+    if (fstop && fstop(x,ytmp)) break;
   }
 }
 
@@ -286,8 +285,8 @@ vector<TGraph> RK4SolveNA(vector<pfunc_t> &fnlist, vector<double> &y0,
     // advance to next step and store results in graphs
     y=y2;
     for (int i=0; i<nFcn; i++) tg[i].SetPoint(tg[i].GetN(),x+h_last,y[i]);
-    x+=h_new;
     if (fstop && fstop(x+h_last,y2)) break;  // fix me
+    x+=h_new;
   }
 
   return tg;
