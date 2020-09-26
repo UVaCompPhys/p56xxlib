@@ -34,6 +34,8 @@ TGraph RK4Solve(double (*f)(double x, double y), double y0,
 /// \param[in] X: represents the independent paramater
 /// \param[in] Y: is a vector of the dependent parameters
 ///
+/// 
+///
 typedef double func_t(double, const vector<double>&);
 
 ///
@@ -44,6 +46,8 @@ typedef func_t* pfunc_t;
 
 // The solvers will return a set of graphs for each dependent variable
 
+TGraph RK4Solve(double (*f)(double x, double y), double y0,
+		int nsteps, double x0, double xmax);
 
 vector<double> RK4StepN(vector<pfunc_t> &fnlist, vector<double> y,
 			double x, double h);

@@ -31,9 +31,9 @@ using std::min;
 /// \param[in] xmax end of range for dependent variable in calculation
 /// x0, xmax, nsteps  are used to set the step size
 ///
-/// Returns a TGraph of y vs x.  y0 is not updated.
+/// Returns a TGraph of y vs x.  x0 and y0 are not updated.
 /// 
-TGraph RK4Solve(double (*f)(double x, double y), double y0,
+TGraph RK4Solve(double(*f)(double x, double y), double y0,
 		int nsteps, double x0, double xmax){
 
   double h=(xmax-x0)/nsteps;     // step size
@@ -161,7 +161,7 @@ vector<TGraph> RK4SolveN(vector<pfunc_t> &fnlist, vector<double> &y0,
 /// \param[in] fnlist vector of function pointers to the ODEs describing the system
 /// \param[in] y vector of initial conditions (updated in this function to the final location) 
 /// \param[in] nsteps maximum number of steps in simulation
-/// \param[in] x0 starting value of dependent vaaiable
+/// \param[in] x0 starting value of dependent variable
 /// \param[in] xmax maximum value of dependent variable
 /// \param[in] fstop optional function of dependent varibles to define a stopping
 ///        condition based on the results of the approximation
@@ -178,10 +178,10 @@ void RK4SolveNx(vector<pfunc_t> &fnlist, vector<double> &y,
     
   for (int n=0; n<nsteps; n++){
     ytmp=RK4StepN(fnlist, y, x, h);
-    if (fstop && fstop(x+h,ytmp)) break;
     y=ytmp;
     x+=h;
     //printf("%lg %lg %lg\n",x,y[0],y[1]);
+    if (fstop && fstop(x+h,ytmp)) break;
   }
 }
 
