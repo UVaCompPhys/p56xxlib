@@ -140,11 +140,11 @@ vector<TGraph> RK4SolveN(vector<pfunc_t> &fnlist, vector<double> &y0,
   
   for (int n=0; n<nsteps; n++){
     ytmp=RK4StepN(fnlist, y, x, h);
-    if (fstop && fstop(x+h,ytmp)) break;
     // advance to next step and store results in graphs
     y=ytmp;
     x+=h;
     for (int i=0; i<nFcn; i++) tg[i].SetPoint(n+1,x,y[i]);
+    if (fstop && fstop(x+h,ytmp)) break;
   }
   
   return tg;
@@ -283,12 +283,11 @@ vector<TGraph> RK4SolveNA(vector<pfunc_t> &fnlist, vector<double> &y0,
       h=h_new;                  // if not try again
     }
     
-    
-    if (fstop && fstop(x+h_last,y2)) break;  // fix me
     // advance to next step and store results in graphs
     y=y2;
     for (int i=0; i<nFcn; i++) tg[i].SetPoint(tg[i].GetN(),x+h_last,y[i]);
     x+=h_new;
+    if (fstop && fstop(x+h_last,y2)) break;  // fix me
   }
 
   return tg;
