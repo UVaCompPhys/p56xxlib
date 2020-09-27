@@ -50,7 +50,8 @@ int main(int argc, char **argv){
   // RK4SolveN should produce the same result for a single ODE
 
   // Solve using single equation solver
-  TGraph tg4=RK4Solve(fun,-1,30,0,10);  // y0=-1
+  double y0=-1;
+  TGraph tg4=RK4Solve(fun,y0,30,0,10); 
   tg4.SetMarkerStyle(kFullStar);
   tg4.SetMarkerSize(0.022*dh/8);
   tg4.SetMarkerColor(kBlue);
@@ -63,9 +64,9 @@ int main(int argc, char **argv){
   // Solve using equation array solver
   vector<pfunc_t> v_fun(1);   // 1 element vector of function pointers
   v_fun[0]=fun_vy;
-  vector<double> y0(1);
-  y0[0]=-1;
-  auto tgN = RK4SolveN(v_fun, y0, 30, 0, 10);
+  vector<double> y(1);
+  y[0]=-1;
+  auto tgN = RK4SolveN(v_fun, y, 30, 0, 10);
   tgN[0].SetMarkerStyle(kFullDiamond);
   tgN[0].SetMarkerSize(0.015*dh/8);
   tgN[0].SetMarkerColor(kRed);
