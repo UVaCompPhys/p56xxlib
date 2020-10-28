@@ -6,7 +6,6 @@
 /// Generic solvers for linear first order ODEs using RK4.
 ///
 
-
 #include "RKn.hpp"
 #include <assert.h>
 #include <algorithm>
@@ -270,7 +269,7 @@ vector<TGraph> RK4SolveNA(vector<pfunc_t> &fnlist, vector<double> &y0,
 	errRel = max(errRel,fabs(errAbs / y2[i]));
       }
       double err=max(errAbs,errRel);  // error estimate
-      err=max(err,1e-15);            // protect against unlikely case of 0 error
+      err=max(err,1e-15);             // protect against unlikely case of 0 error
       h_new = h * pow (fabs (errdef / err), 0.2);
       h_new=max(h_new,hmin);    // restrict adapted step size to above limits
       h_new=min(h_new,hmax);
